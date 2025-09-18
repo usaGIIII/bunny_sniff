@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # // Script for wifi configuration on pi via ssh, or anything on ssh for that matter
-#    Ensure that you have wireless_tools installed (arch) or at least iwlist
+#    Ensure that you have wireless_tools installed (arch) or at least iwlist - mainly for pi project
 
 # // Imports
 import os
