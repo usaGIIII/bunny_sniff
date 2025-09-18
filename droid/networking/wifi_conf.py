@@ -123,7 +123,7 @@ def configure_network_from_file():
     os.system(config_command)
     os.system("nmcli dev wifi list")
 
-def configuer_sniffer():
+def configure_sniffer():
     """
     Function to configure sniffer, put it in to monitor mode
     """
