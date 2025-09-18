@@ -122,6 +122,16 @@ def configure_network_from_file():
     config_command = f"sudo nmcli connection up id {chosen_config}"
     os.system(config_command)
     os.system("nmcli dev wifi list")
+
+def configuer_sniffer():
+    """
+    Function to configure sniffer, put it in to monitor mode
+    """
+    id = wlx24ec99ca83f9 # N.B. won't always be this, hard coded for now with pi
+    # Rename interface for easier management
+    os.system("sudo ip link set wlx24ec99ca83f9 down; sudo ip link set wlx24ec99ca83f9 name krolyk")
+    os.system("sudo iw dev krolyk set type monitor")
+    ow.system("iw dev")
 if __name__ == "__main__":
     # We want to put an option in here so that we can select what option that we want (config, or select new connection)
     interface = get_network_interfaces()
@@ -129,4 +139,5 @@ if __name__ == "__main__":
     y = select_network(x)
     #configure_network(y)
     select_configuration_type()
+    configue_sniffer()
 
