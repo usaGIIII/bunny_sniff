@@ -128,10 +128,10 @@ def configure_sniffer():
     Function to configure sniffer, put it in to monitor mode
     """
     id = wlx24ec99ca83f9 # N.B. won't always be this, hard coded for now with pi
-    # Rename interface for easier management
-    os.system("sudo ip link set wlx24ec99ca83f9 down; sudo ip link set wlx24ec99ca83f9 name krolyk")
-    os.system("sudo iw dev krolyk set type monitor")
-    ow.system("iw dev")
+    # Change name for easy identification if we need to debug:
+    rename_cmd = f'''echo "// Setting up Network Interface"; sudo ip link set {id} down; sudo ip set {id} name krolyk; sudo iw dev krolyk set type monitor; sudo ip link set krolyk up; sudo iw dev krolyk'''
+    os.system(rename_cmd)
+
 if __name__ == "__main__":
     # We want to put an option in here so that we can select what option that we want (config, or select new connection)
     interface = get_network_interfaces()
