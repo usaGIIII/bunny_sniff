@@ -58,6 +58,17 @@ def select_network(networks):
         except ValueError as e:
             raise e
 
+
+def select_configuration_type():
+    choice = input("// Do you want to connect via config file?")
+    if choice == "Y":
+        configure_network_from_file()
+    else: 
+        print("// Available Networks:")
+        os.system("nmcli dev wifi list")
+        ssid = input("// Please input desired SSID")
+        configure_network(ssid)
+
 # WiFi network configuration
 
 def configure_network(ssid, password=None):
@@ -99,10 +110,23 @@ network={{
         os.system("sudo wpa_cli -i wlan0 reconfigure")
     else:
         print("// Config Updated...")
-
+def configure_network_from_file():
+    """
+    A function that configures network based on predefined config files:
+    """
+    print("// Available Network Configs")
+    # Show available configuraiton files:
+    os.system("nmcli connection show")
+    chosen_config = input("// Please input selected config file name: ")
+    print(f"// Loading: {chosen_config}, if you are on ssh you may beed to reconnect on the new network")
+    config_command = f"sudo nmcli connection up id {chosen_config}"
+    os.system(config_command)
+    os.system("nmcli dev wifi list")
 if __name__ == "__main__":
+    # We want to put an option in here so that we can select what option that we want (config, or select new connection)
     interface = get_network_interfaces()
     x = get_networks(interface)
     y = select_network(x)
-    configure_network(y)
+    #configure_network(y)
+    select_configuration_type()
 
