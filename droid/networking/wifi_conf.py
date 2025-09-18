@@ -127,7 +127,7 @@ def configure_sniffer():
     """
     Function to configure sniffer, put it in to monitor mode
     """
-    id = wlx24ec99ca83f9 # N.B. won't always be this, hard coded for now with pi
+    id = "wlx24ec99ca83f9" # N.B. won't always be this, hard coded for now with pi
     # Change name for easy identification if we need to debug:
     rename_cmd = f'''echo "// Setting up Network Interface"; sudo ip link set {id} down; sudo ip set {id} name krolyk; sudo iw dev krolyk set type monitor; sudo ip link set krolyk up; sudo iw dev krolyk'''
     os.system(rename_cmd)
