@@ -139,5 +139,5 @@ if __name__ == "__main__":
     y = select_network(x)
     #configure_network(y)
     select_configuration_type()
-    configue_sniffer()
+    configure_sniffer()
 
